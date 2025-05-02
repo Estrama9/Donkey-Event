@@ -1,0 +1,126 @@
+///////////////////////////UserloginAdminController.php//////////////////////////////////////////////////////////
+
+function isAdmin2($pdo) {
+    session_start(); // Start the session to access $_SESSION variables
+
+    if (!isset($_SESSION['email'])) {
+        return false; // If the user is not logged in (no email in session), deny admin access
+    }
+
+    $stmt = $pdo->prepare("SELECT is_admin FROM Users WHERE email = :email");
+    $stmt->bindParam(':email', $_SESSION['email']); // Bind the email from the session to the SQL query
+    $stmt->execute(); // Execute the SQL query
+    $user = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the result as an associative array
+
+    return isset($user['is_admin']) && $user['is_admin'] == 1;  
+    // Return true only if 'is_admin' is set and equals 1 (admin user)
+}
+
+
+///////////////////////////RegisterController.php//////////////////////////////////////////////////////////
+
+
+
+<?php
+require_once 'config/database.php'; // $pdo
+
+class UserController {
+    public function register($data) {
+        global $pdo;
+
+        // Check if email already exists
+        $stmt = $pdo->prepare("SELECT id FROM Users WHERE email = :email");
+        $stmt->bindParam(':email', $data['email']);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return "Email already registered.";
+        }
+
+        // Hash the password
+        $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        // Insert new user with a default profile (e.g. id_profile = 1 for Client)
+        $stmt = $pdo->prepare("
+            INSERT INTO Users (surname, lastname, email, phone, password, civicness, id_profile, is_admin)
+            VALUES (:surname, :lastname, :email, :phone, :password, :civicness, :id_profile, 0)
+        ");
+
+        $stmt->bindParam(':surname', $data['surname']);
+        $stmt->bindParam(':lastname', $data['lastname']);
+        $stmt->bindParam(':email', $data['email']);
+        $stmt->bindParam(':phone', $data['phone']);
+        $stmt->bindParam(':password', $hashedPassword);
+        $stmt->bindParam(':civicness', $data['civicness']);
+        $stmt->bindParam(':id_profile', $data['id_profile']); // e.g., 1 = Client
+
+        if ($stmt->execute()) {
+            return "User registered successfully.";
+        } else {
+            return "Registration failed.";
+        }
+    }
+}
+
+
+
+/////////////////////////CRUD Profile-User////////////////////////////////
+
+<?php
+require_once 'config/database.php'; // make sure $pdo is defined globally here
+
+class ProfileUsersController {
+    // CREATE a new profile
+    public function create($name) {
+        global $pdo;
+
+        $stmt = $pdo->prepare("INSERT INTO Profile_Users (name) VALUES (:name)");
+        $stmt->bindParam(':name', $name);
+
+        return $stmt->execute() ? "Profile created." : "Failed to create profile.";
+    }
+
+    // READ all profiles
+    public function getAll() {
+        global $pdo;
+
+        $stmt = $pdo->query("SELECT * FROM Profile_Users");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // READ one profile by ID
+    public function getById($id) {
+        global $pdo;
+
+        $stmt = $pdo->prepare("SELECT * FROM Profile_Users WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // UPDATE a profile
+    public function update($id, $name) {
+        global $pdo;
+
+        $stmt = $pdo->prepare("UPDATE Profile_Users SET name = :name WHERE id = :id");
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute() ? "Profile updated." : "Failed to update profile.";
+    }
+
+    // DELETE a profile
+    public function delete($id) {
+        global $pdo;
+
+        $stmt = $pdo->prepare("DELETE FROM Profile_Users WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute() ? "Profile deleted." : "Failed to delete profile.";
+    }
+}
+
+config/
+controllers/
+models/

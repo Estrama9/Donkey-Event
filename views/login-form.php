@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/public/css/style.css">
     <title>Page d'entrée</title>
 </head>
 <body>
     <div class="h-[calc(100vh-60px)] bg-orange-500 m-[30px]">
         <div class="h-screen flex flex-col items-center justify-center gap-10">
-            <h2 class="text-5xl font-bold text-white">DONKEY EVENTS</h2>
+            <h1 class="text-5xl font-bold text-[#f1d0a4]">DONKEY EVENTS</h1>
+            <h2 class="font-cera text-[#f1d0a4] text-xl">Là où les grands moments démarrent en beauté</h2>
             <div class="">
-                <form action="//loginController//" aria-label="Formulaire de connexion" class="flex flex-col border rounded gap-5 bg-white p-6 px-12 pt-12" method="POST">
+                <form action="//loginController//" aria-label="Formulaire de connexion" class="flex flex-col border rounded gap-5 bg-[#f1d0a4] p-6 px-12 pt-12" method="POST">
                     <div class="border rounded p-3 bg-[#78b5a380]" aria-label="Champ Email">
                         <label for="">Email</label>
                         <input type="email" name="email" required>
