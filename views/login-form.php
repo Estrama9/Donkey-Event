@@ -8,7 +8,7 @@
     <title>Page d'entrée</title>
 </head>
 <body>
-    <div class="h-[calc(100vh-60px)] bg-orange-500 m-[30px]">
+    <div class="h-[calc(100vh-60px)] bg-orange-500 m-[30px] rounded">
         <div class="h-screen flex flex-col items-center justify-center gap-10">
             <h1 class="text-5xl font-bold text-[#f1d0a4]">DONKEY EVENTS</h1>
             <h2 class="font-cera text-[#f1d0a4] text-xl">Là où les grands moments démarrent en beauté</h2>
