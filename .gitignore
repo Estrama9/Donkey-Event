@@ -120,7 +120,3 @@ class ProfileUsersController {
         return $stmt->execute() ? "Profile deleted." : "Failed to delete profile.";
     }
 }
-
-config/
-controllers/
-models/
