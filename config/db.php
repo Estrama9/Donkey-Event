@@ -1,7 +1,7 @@
 <?php 
 
-define('HOST','127.0.0.1');
+define('HOST','localhost:8889');
 define('USER','root');
-define('PASS','');
-define('DB','donkey_event');
+define('PASS','root');
+define('DB','DONKEY_EVENT');
 ?>
