@@ -18,13 +18,11 @@
             <div class="flex flex-row justify-center gap-50">
                 <div class="flex flex-col items-center gap-10">
                     <div class="flex flex-col items-center gap-5 border rounded p-3">
-                        <?php
-                            foreach($events as $event): ?>
-                                <h3><?=htmlspecialchars($event['name'])?></h3>
-                                <p><?=htmlspecialchars($event['price']) . " € / jour"?></p>
-                                <p><?= "Date:" . htmlspecialchars($event['date'])?></p>
-                                <p><?= "Catégorie:" . htmlspecialchars($event['max_places'])?></p>
-                        <?php endforeach; ?>
+                        <h3><?= htmlspecialchars($event['event_name']) ?></h3>
+                        <p><?= "Prix: " . htmlspecialchars($event['price']) . " € / jour" ?></p>
+                        <p><?= "Date: " . htmlspecialchars($event['event_date']) ?></p>
+                        <p><?= "Ville: " . htmlspecialchars($event['city_name']) ?></p>
+                        <p><?= "Catégorie: " . htmlspecialchars($event['category_name']) ?></p>
                     </div>
                     <div>
                         <ul>

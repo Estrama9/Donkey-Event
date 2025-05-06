@@ -46,7 +46,7 @@
                         <input type="submit">
                     </div>
                     <div aria-label="Lien vers la page d'inscription">
-                        <p>Vous avez déjà un compte ?<a href="./login-form.php" class="underline">Login ici</a></p>
+                        <p>Vous avez déjà un compte ?<a href="/index.php" class="underline">Login ici</a></p>
                     </div>
                 </form>
             </div>

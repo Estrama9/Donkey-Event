@@ -16,15 +16,19 @@
         <div class="flex flex-col items-center gap-5">
             <h2 class="text-3xl">Évènements</h2>
             <div class="flex flex-row justify-center gap-5">
-                <div class="flex flex-col items-center gap-5 border rounded p-3">
                     <?php
                         foreach($events as $event): ?>
-                            <h3><?=htmlspecialchars($event['name'])?></h3>
-                            <p><?=htmlspecialchars($event['price']) . " € / jour"?></p>
-                            <p><?= "Date:" . htmlspecialchars($event['date'])?></p>
-                            <p><?= "Catégorie:" . htmlspecialchars($event['category_name'])?></p>
+                            <div class="flex flex-col items-center w-[300px] gap-7 border rounded p-3 bg-[#b6c2a3]">
+                                <h3><?=htmlspecialchars($event['event_name'])?></h3>
+                                <p><?=htmlspecialchars($event['price']) . " € / jour"?></p>
+                                <p><?= "Date: " . htmlspecialchars($event['event_date'])?></p>
+                                <p><?= "Catégorie: " . htmlspecialchars($event['category_name'])?></p>
+                                <form class="border rounded p-3 text-center w-40 bg-[#32948f]" action="showEventController.php" method="GET">
+                                    <input type="hidden" name="id" value="<?= $event['id'] ?>">
+                                    <button type="submit">Réserver</button>
+                                </form>
+                            </div>
                     <?php endforeach; ?>
-                </div>
             </div>
         </div>
     </div>

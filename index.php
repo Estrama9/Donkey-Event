@@ -8,8 +8,11 @@
     <title>Index</title>
 </head>
 <body>
-    <?php
-        require_once __DIR__ . '/views/header.php';
-    ?>
+    <div class="h-[calc(100vh-60px)] bg-orange-500 m-[30px] rounded">
+        <?php
+            require_once __DIR__ . '/views/header.php';
+            require_once __DIR__ . '/views/login-form.php';
+        ?>
+    </div>
 <body>
 </html>
